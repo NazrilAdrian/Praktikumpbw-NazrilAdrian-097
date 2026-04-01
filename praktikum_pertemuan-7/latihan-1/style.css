@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif; 
+}
+.container { 
+    max-width: 400px;
+    margin: 40px auto;
+    border: 1px solid #ccc; 
+    padding: 20px;
+    border-radius: 10px; 
+}
+label {
+    display: block;
+    margin-top: 15px; 
+    margin-right: 10px;
+}
+input[type="text"], input[type="number"] { 
+    width: 100%; 
+    padding: 6px;
+    margin-top: 4px; 
+}
+.result { 
+    margin-top: 20px;
+    border: 1px solid #aaa;
+    border-radius: 10px; 
+    padding: 10px; 
+}
