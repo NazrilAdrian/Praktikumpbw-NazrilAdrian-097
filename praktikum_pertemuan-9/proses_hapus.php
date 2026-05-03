@@ -1,6 +1,8 @@
 <?php
 include 'koneksi_db.php'; // Pastikan $conn = new mysqli(...)
 
+$redirect_target = 'hapus_buku.php';
+
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -10,18 +12,18 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     // Eksekusi dan tangani hasilnya
     if ($stmt->execute()) {
-        echo "<script>alert('Data berhasil dihapus');
-window.location='index.php';</script>";
+        header("Location: $redirect_target?message=" . urlencode("Data berhasil dihapus."));
+        exit;
     } else {
-        echo "<script>alert('Gagal menghapus data: " . addslashes($stmt->error) . "');
-window.location='index.php';</script>";
+        header("Location: $redirect_target?message=" . urlencode("Gagal menghapus data: " . $stmt->error));
+        exit;
     }
 
     // Tutup statement
     $stmt->close();
 } else {
-    echo "<script>alert('ID tidak valid');
-window.location='index.php';</script>";
+    header("Location: $redirect_target?message=" . urlencode("ID tidak valid."));
+    exit;
 }
 
 // Tutup koneksi

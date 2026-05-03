@@ -3,10 +3,18 @@ include 'koneksi_db.php'; // Koneksi database
 
 // Query untuk menampilkan data pesanan beserta nama pelanggan dan total harga
 $query = "
-SELECT Pesanan.ID AS Pesanan_ID, Pelanggan.Nama AS Nama_Pelanggan, Pesanan.Tanggal_Pesanan,
-Pesanan.Total_Harga
+SELECT
+    Pesanan.ID AS Pesanan_ID,
+    Pelanggan.Nama AS Nama_Pelanggan,
+    Pesanan.Tanggal_Pesanan,
+    Pesanan.Total_Harga,
+    GROUP_CONCAT(CONCAT(Buku.Judul, ' (x', Detail_Pesanan.Kuantitas, ')') SEPARATOR ', ') AS Buku_Dipesan
 FROM Pesanan
 JOIN Pelanggan ON Pesanan.Pelanggan_ID = Pelanggan.ID
+LEFT JOIN Detail_Pesanan ON Detail_Pesanan.Pesanan_ID = Pesanan.ID
+LEFT JOIN Buku ON Buku.ID = Detail_Pesanan.Buku_ID
+GROUP BY Pesanan.ID, Pelanggan.Nama, Pesanan.Tanggal_Pesanan, Pesanan.Total_Harga
+ORDER BY Pesanan.ID DESC
 ";
 $result = $conn->query($query);
 ?>
@@ -30,6 +38,7 @@ $result = $conn->query($query);
                 <tr>
                     <th>ID Pesanan</th>
                     <th>Nama Pelanggan</th>
+                    <th>Buku Dipesan</th>
                     <th>Tanggal Pesanan</th>
                     <th>Total Harga</th>
                 </tr>
@@ -39,6 +48,7 @@ $result = $conn->query($query);
                 <tr>
                     <td><?= $row['Pesanan_ID'] ?></td>
                     <td><?= htmlspecialchars($row['Nama_Pelanggan']) ?></td>
+                    <td><?= htmlspecialchars($row['Buku_Dipesan'] ?? '-') ?></td>
                     <td><?= $row['Tanggal_Pesanan'] ?></td>
                     <td>Rp<?= number_format($row['Total_Harga'], 2) ?></td>
                 </tr>

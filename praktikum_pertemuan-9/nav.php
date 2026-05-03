@@ -1,7 +1,7 @@
 <!--Menu Navigari-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="index.php">Toko Buku Online
+        <a class="navbar-brand" href="index.php">Toko Buku Giovanna
         </a>
         <button class="navbar-toggler" type="button" data-bs-
         toggle="collapse" data-bs-target="#navbarNav" aria-
@@ -19,6 +19,9 @@
                     <a class="nav-link" href="tambah_buku.php">Tambah Buku</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="pelanggan.php">Tambah Pelanggan</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="transaksi.php">Buat Pesanan
                     </a>
                 </li>
@@ -27,7 +30,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="proses_hapus.php">Hapus Buku
+                    <a class="nav-link" href="hapus_buku.php">Hapus Buku
                     </a>
                 </li>
             </ul>

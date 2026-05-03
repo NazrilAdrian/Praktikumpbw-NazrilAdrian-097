@@ -5,6 +5,7 @@ include 'nav.php';
 // Ambil daftar buku dan pelanggan
 $buku_result = $conn->query("SELECT ID, Judul FROM Buku");
 $pelanggan_result = $conn->query("SELECT ID, Nama FROM Pelanggan");
+$pelanggan_kosong = (!$pelanggan_result || $pelanggan_result->num_rows === 0);
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +21,12 @@ $pelanggan_result = $conn->query("SELECT ID, Nama FROM Pelanggan");
     <h2>Buat Pesanan Baru</h2>
     <?php if (isset($_GET['message'])): ?>
     <div class="alert alert-info"><?= htmlspecialchars($_GET['message']) ?></div>
+    <?php endif; ?>
+
+    <?php if ($pelanggan_kosong): ?>
+    <div class="alert alert-warning">
+        Data pelanggan belum ada. Tambahkan dulu di <a href="pelanggan.php">halaman pelanggan</a>.
+    </div>
     <?php endif; ?>
 
     <form method="post" action="proses_transaksi.php">
@@ -47,7 +54,7 @@ $pelanggan_result = $conn->query("SELECT ID, Nama FROM Pelanggan");
             <label for="kuantitas" class="form-label">Jumlah Buku</label>
             <input type="number" class="form-control" id="kuantitas" name="buku[1][kuantitas]" required>
         </div>
-        <button type="submit" class="btn btn-primary">Buat Pesanan</button>
+        <button type="submit" class="btn btn-primary" <?= $pelanggan_kosong ? 'disabled' : '' ?>>Buat Pesanan</button>
     </form>
 </div>
 </body>
