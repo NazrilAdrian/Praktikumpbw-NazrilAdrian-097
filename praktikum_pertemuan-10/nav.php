@@ -1,0 +1,44 @@
+<!--Menu Navigari-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand" href="index.php">Toko Buku Giovanna
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-
+        toggle="collapse" data-bs-target="#navbarNav" aria-
+        controls="navbarNav" aria-expanded="false" aria-
+        label="Toogle navigation">
+            <span class="navbar-toggle-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto gap-4" style="font-size: 0.95rem;">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Daftar Buku             
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tambah_buku.php">Tambah Buku</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pelanggan.php">Tambah Pelanggan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="transaksi.php">Buat Pesanan
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="lihat_transaksi.php">Lihat Pesanan
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="hapus_buku.php">Hapus Buku
+                    </a>
+                </li>
+                <?php if (isset($_SESSION['login_Un51k4'])): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Logout</a>
+                </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </div>
+</nav>

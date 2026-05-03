@@ -1,0 +1,37 @@
+<?php
+session_start();
+
+if (isset($_SESSION['login_Un51k4'])) {
+    header("Location: index.php");
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h2>Masuk kedalam sistem</h2>
+
+    <?php if (isset($_GET['message'])): ?>
+        <div class="alert alert-info"><?= htmlspecialchars($_GET['message']) ?></div>
+    <?php endif; ?>
+
+    <form method="post" action="proses_login.php">
+        <div class="mb-3">
+            <label class="form-label">Nama pengguna :</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Kata sandi :</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</body>
+</html>
