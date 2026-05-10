@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <link href="./src/output.css" rel="stylesheet" />
+    <style>
+        :root {
+            --ink: #0f1a24;
+            --muted: #6b7280;
+            --paper: #f7f4ed;
+            --card: #ffffff;
+            --accent: #0e7490;
+            --accent-2: #f59e0b;
+            --ring: #0ea5a7;
+    }
+    body {
+        font-family: "Space Grotesk", sans-serif;
+    }
+        @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-12px);
+        }
+    }
+    @keyframes rise {
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    </style>
+    </head>
+    <body class="min-h-screen bg-[var(--paper)] text-[var(--ink)]">
+    <div class="relative min-h-screen overflow-hidden">
+        <div
+            class="pointer-events-none absolute -top-20 left-10 h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(14,116,144,0.35)_0%,_rgba(14,116,144,0)_70%)] blur-3xl animate-[float_8s_ease-in-out_infinite]"
+        ></div>
+        <div
+        class="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(245,158,11,0.35)_0%,_rgba(245,158,11,0)_70%)] blur-3xl animate-[float_10s_ease-in-out_infinite]"
+    ></div>
+
+    <main
+        class="mx-auto grid min-h-screen max-w-5xl items-center gap-10 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr]"
+    >
+        <section>
+            <p class="text-xs uppercase tracking-[0.3em] text-[var(--muted)]">
+            Praktikum PBW
+            </p>
+            <h1 class="mt-4 text-4xl font-semibold leading-tight">
+            Login sederhana tanpa database.
+            </h1>
+            <p class="mt-4 max-w-md text-sm text-[var(--muted)]">
+            Masukkan username dan password untuk masuk ke dashboard.
+            </p>
+            <div
+            class="mt-8 inline-flex items-center gap-3 rounded-2xl bg-white/70 px-4 py-3 text-sm"
+        >
+            <span class="font-semibold">Demo:</span>
+            <span
+                class="rounded-full bg-black/5 px-3 py-1 text-xs font-semibold"
+                >admin</span
+            >
+            <span
+                class="rounded-full bg-black/5 px-3 py-1 text-xs font-semibold"
+                >12345</span
+            >
+            </div>
+        </section>
+
+        <section>
+            <div
+            class="rounded-3xl border border-black/10 bg-[var(--card)] p-8 shadow-lg shadow-black/10 animate-[rise_600ms_ease-out]"
+        >
+            <div class="flex items-center justify-between">
+                <div>
+                <h2 class="text-2xl font-semibold">Masuk</h2>
+                <p class="text-sm text-[var(--muted)]">
+                    Akses halaman dashboard.
+                </p>
+                </div>
+                <span
+                class="rounded-full bg-black/5 px-3 py-1 text-xs font-semibold"
+                >Demo</span
+            >
+            </div>
+
+            <form id="login-form" class="mt-6 space-y-4">
+                <div>
+                <label
+                    class="text-xs uppercase text-[var(--muted)]"
+                    for="username"
+                    >Username</label
+                >
+                <input
+                    id="username"
+                    type="text"
+                    placeholder="admin"
+                    class="mt-2 w-full rounded-2xl border border-black/10 bg-[var(--paper)] px-4 py-3 text-sm outline-none focus:border-[var(--ring)] focus:ring-2 focus:ring-[var(--ring)]"
+                    required
+                />
+            </div>
+            <div>
+                <label
+                    class="text-xs uppercase text-[var(--muted)]"
+                    for="password"
+                    >Password</label
+                >
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="12345"
+                    class="mt-2 w-full rounded-2xl border border-black/10 bg-[var(--paper)] px-4 py-3 text-sm outline-none focus:border-[var(--ring)] focus:ring-2 focus:ring-[var(--ring)]"
+                    required
+                />
+            </div>
+            <p id="login-error" class="hidden text-sm text-rose-600">
+                Username atau password salah.
+            </p>
+            <button
+                type="submit"
+                class="w-full rounded-2xl bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-black/15"
+            >
+                Login
+            </button>
+            </form>
+
+            <p class="mt-6 text-xs text-[var(--muted)]">
+                Tidak menggunakan database, hanya validasi lokal.
+            </p>
+        </div>
+        </section>
+    </main>
+    </div>
+
+    <script>
+        const AUTH_KEY = "demo-auth";
+        const USER_KEY = "demo-user";
+        const DEMO_USER = "admin";
+        const DEMO_PASS = "12345";
+
+        if (localStorage.getItem(AUTH_KEY) === "true") {
+            window.location.href = "./index.html";
+    }
+
+        const form = document.getElementById("login-form");
+        const errorMessage = document.getElementById("login-error");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
+
+        if (username === DEMO_USER && password === DEMO_PASS) {
+            localStorage.setItem(AUTH_KEY, "true");
+            localStorage.setItem(USER_KEY, username);
+            window.location.href = "./index.html";
+            return;
+        }
+
+        errorMessage.classList.remove("hidden");
+    });
+    </script>
+</body>
+</html>

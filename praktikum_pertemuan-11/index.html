@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard</title>
+        link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+    />
+    <link href="./src/output.css" rel="stylesheet" />
+    <style>
+        :root {
+            --ink: #0f1a24;
+            --muted: #6b7280;
+            --paper: #f7f4ed;
+            --card: #ffffff;
+            --accent: #0e7490;
+            --accent-2: #f59e0b;
+            --ring: #0ea5a7;
+        }
+    body {
+        font-family: "Space Grotesk", sans-serif;
+    }
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-12px);
+        }
+    }
+    @keyframes rise {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    </style>
+    </head>
+    <body class="min-h-screen bg-[var(--paper)] text-[var(--ink)]">
+    <div class="relative min-h-screen overflow-hidden">
+        <div
+        class="pointer-events-none absolute -top-16 right-10 h-64 w-64 rounded-full bg-[radial-gradient(circle,_rgba(14,116,144,0.35)_0%,_rgba(14,116,144,0)_70%)] blur-3xl animate-[float_8s_ease-in-out_infinite]"
+        ></div>
+    <div
+        class="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-[radial-gradient(circle,_rgba(245,158,11,0.35)_0%,_rgba(245,158,11,0)_70%)] blur-3xl animate-[float_10s_ease-in-out_infinite]"
+    ></div>
+
+    <header
+        class="mx-auto flex max-w-5xl items-center justify-between px-6 py-10"
+    >
+        <div>
+            <p class="text-xs uppercase tracking-[0.3em] text-[var(--muted)]">
+            Dashboard
+            </p>
+            <h1 class="text-3xl font-semibold">
+                Halo, <span id="user-name">admin</span>
+            </h1>
+            <p class="text-sm text-[var(--muted)]">
+                Ringkasan singkat aktivitas hari ini.
+            </p>
+        </div>
+        <button
+            id="logout-btn"
+            class="rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-semibold"
+        >
+            Logout
+        </button>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-6 pb-16">
+        <section
+            class="grid gap-4 md:grid-cols-3 animate-[rise_600ms_ease-out]"
+        >
+            <div
+            class="rounded-3xl border border-black/10 bg-white p-5 shadow-sm"
+            >
+                <p class="text-sm text-[var(--muted)]">Total Buku</p>
+                <p class="mt-2 text-3xl font-semibold">128</p>
+                <p class="mt-1 text-xs text-[var(--muted)]">Stok aman</p>
+            </div>
+            <div
+            class="rounded-3xl border border-black/10 bg-white p-5 shadow-sm"
+            >
+                <p class="text-sm text-[var(--muted)]">Transaksi Hari Ini</p>
+                <p class="mt-2 text-3xl font-semibold">14</p>
+                <p class="mt-1 text-xs text-[var(--muted)]">Terakhir 10:45</p>
+            </div>
+            <div
+            class="rounded-3xl border border-black/10 bg-white p-5 shadow-sm"
+            >
+                <p class="text-sm text-[var(--muted)]">Status</p>
+                <p class="mt-2 text-3xl font-semibold">Aktif</p>
+                <p class="mt-1 text-xs text-[var(--muted)]">Siap melayani</p>
+            </div>
+        </section>
+
+        <section
+            class="mt-6 rounded-3xl border border-black/10 bg-white p-6 shadow-sm"
+        >
+            <div class="flex items-center justify-between">
+                <div>
+                <h2 class="text-lg font-semibold">Aktivitas Terbaru</h2>
+                <p class="text-sm text-[var(--muted)]">Tampilan sederhana</p>
+                </div>
+            <span
+                class="rounded-full bg-black/5 px-3 py-1 text-xs font-semibold"
+                >Demo</span
+            >
+            </div>
+            <div class="mt-4 overflow-x-auto">
+            <table class="w-full text-left text-sm">
+                <thead class="text-xs uppercase text-[var(--muted)]">
+                <tr>
+                    <th class="py-2">Waktu</th>
+                    <th class="py-2">Aktivitas</th>
+                    <th class="py-2">Status</th>
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-black/5">
+                <tr>
+                    <td class="py-3">09:12</td>
+                    <td class="py-3">Tambah buku baru</td>
+                    <td class="py-3">
+                    <span
+                        class="rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-700"
+                        >Selesai</span
+                    >
+                    </td>
+                </tr>
+                <tr>
+                    <td class="py-3">10:05</td>
+                    <td class="py-3">Transaksi peminjaman</td>
+                    <td class="py-3">
+                    <span
+                        class="rounded-full bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-700"
+                        >Proses</span
+                    >
+                </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        </section>
+    </main>
+    </div>
+
+    <script>
+        const AUTH_KEY = "demo-auth";
+        const USER_KEY = "demo-user";
+
+        if (localStorage.getItem(AUTH_KEY) !== "true") {
+        window.location.href = "./login.html";
+    }
+
+        const nameValue = localStorage.getItem(USER_KEY) || "admin";
+        const nameTarget = document.getElementById("user-name");
+        if (nameTarget) {
+        nameTarget.textContent = nameValue;
+    }
+
+        const logoutButton = document.getElementById("logout-btn");
+        logoutButton.addEventListener("click", () => {
+        localStorage.removeItem(AUTH_KEY);
+        localStorage.removeItem(USER_KEY);
+        window.location.href = "./login.html";
+    });
+    </script>
+</body>
+</html>
